@@ -28,3 +28,6 @@ class Secret(models.Model):
     lifetime = models.DateTimeField(
         verbose_name="Время жизни секрета",
     )
+
+    def str(self):
+        return self.secret_text
