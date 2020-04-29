@@ -29,5 +29,9 @@ class Secret(models.Model):
         verbose_name="Время жизни секрета",
     )
 
-    def str(self):
+    def __str__(self):
         return self.secret_text
+
+    class Meta:
+        verbose_name = 'Секрет'
+        verbose_name_plural = 'Секреты'
