@@ -5,4 +5,15 @@ from secret_app.models import Secret
 class SecretSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Secret
-        fields = ('secret_key', 'secret_text', 'secret_word', 'added_at', 'lifetime')
+        fields = ('secret_key',
+                  'secret_text',
+                  'secret_word',
+                  'added_at',
+                  'lifetime'
+                  )
+
+
+class CreateSecretSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Secret
+        fields = ('id', 'secret_key')

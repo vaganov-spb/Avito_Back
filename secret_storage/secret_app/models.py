@@ -16,8 +16,8 @@ class Secret(models.Model):
     )
     secret_key = models.CharField(
         max_length=50,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
         verbose_name='Секретный Ключ'
     )
     is_read = models.BooleanField(default=False)
@@ -25,7 +25,8 @@ class Secret(models.Model):
         auto_now_add=True,
         verbose_name="Время создания секрета",
     )
-    lifetime = models.DateTimeField(
+    lifetime = models.CharField(
+        max_length=10000,
         verbose_name="Время жизни секрета",
     )
 

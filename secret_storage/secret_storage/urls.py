@@ -20,6 +20,7 @@ from secret_app import views
 
 router = routers.DefaultRouter()
 router.register(r'secrets', views.SecretViewSet)
+router.register(r'', views.CreateSecretViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
