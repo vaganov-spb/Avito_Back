@@ -2,14 +2,13 @@ from django.db import models
 
 
 class Secret(models.Model):
-    secret_text = models.CharField(
-        max_length=750,
+    secret_text = models.BinaryField(
         blank=False,
         null=False,
         verbose_name='Секретный Текст'
     )
     secret_word = models.CharField(
-        max_length=50,
+        max_length=32,
         blank=False,
         null=False,
         verbose_name='Кодовая Фраза'
@@ -25,13 +24,12 @@ class Secret(models.Model):
         auto_now_add=True,
         verbose_name="Время создания секрета",
     )
-    lifetime = models.CharField(
-        max_length=10000,
+    lifetime = models.DurationField(
         verbose_name="Время жизни секрета",
     )
 
     def __str__(self):
-        return self.secret_text
+        return self.secret_key
 
     class Meta:
         verbose_name = 'Секрет'
