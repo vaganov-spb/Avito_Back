@@ -19,8 +19,8 @@ from rest_framework import routers
 from secret_app import views
 
 router = routers.DefaultRouter()
-router.register(r'secrets', views.SecretViewSet)
-router.register(r'', views.CreateSecretViewSet)
+router.register(r'secret', views.GetSecretViewSet)
+router.register(r'generate', views.CreateSecretViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

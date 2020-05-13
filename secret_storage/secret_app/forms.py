@@ -1,9 +1,7 @@
 from django import forms
 from secret_app.models import Secret
-from secret_app.utils import generate_key, create_lifetime, aes_encryptor
+from secret_app.utils import generate_key, create_lifetime, aes_encrypt
 import hashlib
-
-DEGREE_BASE = 16
 
 
 class CreateSecretForm(forms.Form):
@@ -51,12 +49,8 @@ class CreateSecretForm(forms.Form):
         text_secret = cleaned_data.get('secret_text')
         text_word = cleaned_data.get('secret_word')
 
-        bytes_word = bytes(text_word, 'utf-8')
-        hash_word = hashlib.md5(bytes_word).hexdigest()
-
-        string_to_cipher = text_secret + ' ' * (DEGREE_BASE - (len(text_secret) % DEGREE_BASE))
-        encryptor = aes_encryptor(text_word)
-        ciphertext = encryptor.encrypt(string_to_cipher)
+        hash_word = hashlib.md5(text_word.encode()).hexdigest()
+        ciphertext = aes_encrypt(text_secret, text_word)
 
         secret = Secret(secret_text=ciphertext, secret_word=hash_word)
         key = generate_key()
