@@ -12,13 +12,13 @@ django-timedeltafield==0.7.10
 djangorestframework==3.11.0
 djangorestframework-jsonapi==3.1.0
 factory-boy==2.12.0
-fake-factory==9999.9.9
 Faker==4.1.0
 idna==2.9
 inflection==0.4.0
 Naked==0.1.31
 pep8==1.7.1
 pi==0.1.2
+Pillow==7.1.2
 psycopg2-binary==2.8.5
 pycodestyle==2.5.0
 pycrypto==2.6.1
