@@ -21,7 +21,7 @@ class CreateSecretViewSet(viewsets.ModelViewSet):
             serializer_class = self.get_serializer_class()
             serializer = serializer_class(secret, many=False)
             return Response(serializer.data, status.HTTP_201_CREATED)
-        return Response({'detail': form.errors}, status.HTTP_400_BAD_REQUEST)
+        return Response(form.errors, status.HTTP_400_BAD_REQUEST)
 
 
 class GetSecretViewSet(viewsets.ModelViewSet):
