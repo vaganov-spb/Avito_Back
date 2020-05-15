@@ -42,6 +42,9 @@ class CreateSecretForm(forms.Form):
         if not 0 <= self._days < 999999999:
             raise forms.ValidationError("Invalid days value")
 
+        if self._seconds + self._days + self._microseconds == 0:
+            raise forms.ValidationError("Lifetime must be more then 0")
+
         return cleaned_data
 
     def save(self, *args, **kwargs):
