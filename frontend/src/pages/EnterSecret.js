@@ -50,7 +50,6 @@ class EnterSecret extends React.Component {
 
     async SendToBackend(){
         const data = dataformat(this.state);
-        console.log(data)
         await fetch("http://localhost:8000/generate/", {
             method: "POST",
             // credentials: "include",
@@ -70,7 +69,7 @@ class EnterSecret extends React.Component {
                     }})
                 } else {
                     this.setState({errors: null})
-                    this.setState({secret_url: `http://127.0.0.1:3000/secret/${data['data']['attributes']['secret_key']}`})
+                    this.setState({secret_url: `http://localhost:3000/secret/${data['data']['attributes']['secret_key']}`})
                 }
             })
         })
