@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from '../components/Header';
-import RenderSecretUrlStyles from '../styles/RenderSecretUrl.module.css';
+import RenderSecretStyles from '../styles/RenderSecret.module.css';
 
 class RenderSecretUrl extends React.Component{ 
 
     constructor(props) {
         super(props);
-        this.secret_url = props.location.state.secret_url;
+        this.secret = props.location.state.secret;
     }
 
     render(){
@@ -14,8 +14,11 @@ class RenderSecretUrl extends React.Component{
         return (
             <React.Fragment>
                 <Header/>
-                <div className={RenderSecretUrlStyles.container}>
-                    <span className={RenderSecretUrlStyles.link}> Use this <a href={this.secret_url}> link </a> to get your secret and don't forget your secret phrase! </span>
+                <div className={RenderSecretStyles.container}>
+                    <div className={RenderSecretStyles.congrats}> Your Secret Text: </div>
+                    <div className={RenderSecretStyles.text}>
+                        {this.secret}
+                    </div>
                 </div>
             </React.Fragment>
         )

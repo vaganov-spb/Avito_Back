@@ -27,7 +27,23 @@ class CreateSecretViewSet(viewsets.ModelViewSet):
 class GetSecretViewSet(viewsets.ModelViewSet):
     queryset = Secret.objects.all()
     serializer_class = CreateSecretSerializer
-    http_method_names = ['post']
+    http_method_names = ['get', 'post']
+
+    def list(self, request,  *args, **kwargs):
+        return Response('List function is not offered in this path', status.HTTP_403_FORBIDDEN)
+
+    @action(methods=['get'], detail=False, url_path='check/(?P<secret_key>[0-9a-f]{32})')
+    def exist_non_read_check(self, request, secret_key):
+        try:
+            secret = self.get_queryset().get(secret_key=secret_key)
+        except Secret.DoesNotExist:
+            return Response('Invalid secret key', status.HTTP_404_NOT_FOUND)
+        except Secret.MultipleObjectsReturned:
+            return Response('There are more than 1 secret with such key', status.HTTP_300_MULTIPLE_CHOICES)
+        if secret.is_read:
+            return Response('You have already read this secret', status.HTTP_403_FORBIDDEN)
+
+        return Response("Secret is valid", status.HTTP_200_OK)
 
     def create(self, request,  *args, **kwargs):
         return Response('Create function is not offered in this path', status.HTTP_403_FORBIDDEN)

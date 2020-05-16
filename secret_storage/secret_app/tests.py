@@ -47,9 +47,9 @@ def create_response(microsec, seconds, days, text, phrase):
 class CreateSecret(TestCase):
     def setUp(self):
         self.client = Client()
-        self.microseconds = random.randint(0, MAX_MICROSEC_VALUE)
-        self.seconds = random.randint(0, MAX_SECONDS_VALUE)
-        self.days = random.randint(0, MAX_DAYS_VALUE)
+        self.microseconds = random.randint(1, MAX_MICROSEC_VALUE)
+        self.seconds = random.randint(1, MAX_SECONDS_VALUE)
+        self.days = random.randint(1, MAX_DAYS_VALUE)
         self.text_size = random.randint(1, MAX_TEXT)
         self.word_size = random.randint(1, MAX_WORD)
         self.text = string_generator(self.text_size)

@@ -11,7 +11,7 @@ function InfoField(props) {
             <textarea 
                 className={InfoFields.name} 
                 onChange={(e) => onChange(e)} 
-                placeholder="Write here...."  
+                placeholder={props.placeholder}  
                 maxLength={props.length}
                 rows={props.rows}
             />

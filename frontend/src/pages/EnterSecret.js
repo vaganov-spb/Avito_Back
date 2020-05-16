@@ -1,11 +1,10 @@
-/* eslint-disable default-case */
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import Header from '../components/Header'
-import InfoField from '../components/InfoField'
-import EnterSecretStyles from '../styles/EnterSecret.module.css'
-import Lifetime from '../components/Lifetime'
-import dataformat from '../utils/dataformat'
+import Header from '../components/Header';
+import InfoField from '../components/InfoField';
+import EnterSecretStyles from '../styles/EnterSecret.module.css';
+import Lifetime from '../components/Lifetime';
+import dataformat from '../utils/dataformat';
 
 class EnterSecret extends React.Component {
 
@@ -16,8 +15,8 @@ class EnterSecret extends React.Component {
             hours: null,
             minutes: null,
             seconds: null,
-            text: null,
-            phrase: null,
+            text: '',
+            phrase: '',
             errors: null,
             secret_url: null,
         };
@@ -25,7 +24,7 @@ class EnterSecret extends React.Component {
         this.SendToBackend  = this.SendToBackend.bind(this);
     }
 
-    SetParam(parametr, value){
+    SetParam(parametr, value) {
         switch(parametr) {
             case 'days':
                 this.setState({days: value});
@@ -45,12 +44,14 @@ class EnterSecret extends React.Component {
             case 'phrase':
                 this.setState({phrase: value});
                 break;
+            default:
+                break;
         }   
     }
 
-    async SendToBackend(){
+    SendToBackend() {
         const data = dataformat(this.state);
-        await fetch("http://localhost:8000/generate/", {
+        fetch("http://localhost:8000/generate/", {
             method: "POST",
             // credentials: "include",
             headers: {
@@ -110,8 +111,8 @@ class EnterSecret extends React.Component {
                 <Header/>
                 <div className={EnterSecretStyles.container}>
                     {error}
-                    <InfoField name="text" length="1000" rows="8" description="Enter your Secret(max 1000 symbols)" ChangeVal={this.SetParam}/>
-                    <InfoField name="phrase" length="128" rows="3" description="Enter your Check Phrase(max 128 symbols)" ChangeVal={this.SetParam}/>
+                    <InfoField name="text" length="1000" rows="8" description="Enter your Secret(max 1000 symbols)" placeholder="Type your secret text here.." ChangeVal={this.SetParam}/>
+                    <InfoField name="phrase" length="128" rows="3" description="Enter your Check Phrase(max 128 symbols)" placeholder="Type your code phrase here.." ChangeVal={this.SetParam}/>
                     <Lifetime ChangeVal={this.SetParam}/>
                     <div className={EnterSecretStyles.sendbutton} onClick={this.SendToBackend}>
                         Send Secret!

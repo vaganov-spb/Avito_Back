@@ -12,7 +12,7 @@ function dataformat(obj) {
                     "seconds": seconds ||  0,
                     "days": days || 0
                 },
-                "secret_text": obj['text'] || '',
+                "secret_text": obj['text'].trim() || '',
                 "secret_word": obj['phrase'] || ''
             }
         }
