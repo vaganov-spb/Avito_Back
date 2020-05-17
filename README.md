@@ -23,7 +23,7 @@ $ vim local_settings.py
 ```
 
 In this file specify information about database in such format:
-![Algorithm schema](../../local_settings.jpg)
+![Algorithm schema](./images/local_settings.jpg)
 
 To run django application create venv and run server:
 
