@@ -29,6 +29,11 @@ ALLOWED_HOSTS = ['*']
 
 APPEND_SLASH = False
 
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -113,9 +118,9 @@ WSGI_APPLICATION = 'secret_storage.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'avito_db',
-        'USER': 'avito',
-        'PASSWORD': 'avito',
+        'NAME': LOCAL_DB_NAME,
+        'USER': LOCAl_USER_NAME,
+        'PASSWORD': LOCAL_PASSWORD,
         'HOST': '127.0.0.1',
         'PORT': '5432',
         'TEST': {
