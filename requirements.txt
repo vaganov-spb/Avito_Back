@@ -22,7 +22,7 @@ django-datatables-views==0.3
 django-echarts==0.3.6
 django-group-by==0.3.1
 django-request-logging==0.7.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 EasyProcess==0.2.9
 entrypoints==0.2.3
 html5lib==1.0.1
